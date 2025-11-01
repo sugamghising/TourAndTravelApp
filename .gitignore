@@ -103,7 +103,7 @@ out/
 
 # Gatsby files
 .cache/
-public/
+# public/ - Commented out to allow React public folder
 
 # Vuepress
 .vuepress/dist
