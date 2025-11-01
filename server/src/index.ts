@@ -29,8 +29,13 @@ app.get('/', (req, res) => {
 
 app.use(errorHandler)
 
+// For Vercel serverless function
+export default app;
 
-app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
-});
+// Only start server in development
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log(`Server running on http://localhost:${port}`);
+    });
+}
 
