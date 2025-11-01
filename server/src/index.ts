@@ -20,17 +20,15 @@ const allowedOrigins = [
     'http://localhost:3000',
     'https://tour-and-travel-app-frontend.vercel.app',
     process.env.FRONTEND_URL
-].filter(Boolean); // Remove undefined values
+].filter(Boolean); // ✅ removes undefined
+
 
 app.use(cors({
     origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-
-        if (allowedOrigins.indexOf(origin) !== -1) {
+        if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
-            callback(new Error('Not allowed by CORS'));
+            callback(new Error("Not allowed by CORS"));
         }
     },
     credentials: true, // allow cookies
